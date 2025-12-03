@@ -1,0 +1,96 @@
+:root{
+  --vidate-pink: #ec4899;
+  --bg-dark: linear-gradient(180deg,#05050a 0%, #0b0b10 100%);
+  --nav-bg: rgba(15,23,42,0.72);
+  --glass: rgba(255,255,255,0.03);
+}
+
+/* Reset */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg-dark);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;color:#fff}
+
+/* Left vertical icon nav */
+.left-nav{
+  position:fixed;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  z-index:60;
+}
+
+/* Shared nav-icon style used by nav and StartDating */
+.nav-icon{
+  --size:56px;
+  width:var(--size);
+  height:var(--size);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px;
+  border-radius:12px;
+  background:var(--nav-bg);
+  border:1px solid var(--glass);
+  color:var(--vidate-pink);            /* icon color (SVG fill=currentColor) */
+  cursor:pointer;
+  overflow:hidden;
+  transition:width .22s cubic-bezier(.2,.9,.2,1), background .18s, transform .12s;
+  justify-content:center;
+}
+.nav-icon:focus { outline: 2px solid rgba(236,72,153,0.18); outline-offset: 2px; }
+
+/* Ensure SVG uses currentColor and is visible */
+.nav-icon .icon { display:block; width:20px; height:20px; fill: currentColor; stroke: none; opacity:0.98; }
+
+/* label hidden by default */
+.nav-icon .nav-label{
+  white-space:nowrap;
+  opacity:0;
+  transform:translateX(-8px);
+  transition:opacity .18s, transform .18s;
+  color:#ffd6e8;
+  font-weight:600;
+  font-size:14px;
+}
+
+/* expand on hover/focus to reveal label */
+.nav-icon:hover,
+.nav-icon:focus{
+  width:180px;
+  justify-content:flex-start;
+  background:linear-gradient(90deg, rgba(236,72,153,0.08), rgba(236,72,153,0.06));
+  transform:translateX(4px);
+}
+.nav-icon:hover .nav-label,
+.nav-icon:focus .nav-label{
+  opacity:1;
+  transform:translateX(0);
+}
+
+/* Center area */
+.center-wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:18px;
+  padding-left:120px;
+}
+
+/* Canvas */
+#pinkboard{ width:320px; height:320px; display:block; border-radius:50%; background:transparent; }
+
+/* Quick-start inherits nav-icon visuals */
+.quick-start{ margin-top:6px; color:var(--vidate-pink); background:var(--nav-bg); border:1px solid var(--glass); }
+.quick-start .nav-label{ color:#ffd6e8; }
+
+/* small screens */
+@media (max-width:640px){
+  .left-nav{left:10px;top:12px;transform:none;flex-direction:row}
+  .nav-icon{width:44px;height:44px;border-radius:10px}
+  .center-wrap{padding-left:16px;padding-top:56px}
+  #pinkboard{width:240px;height:240px}
+}

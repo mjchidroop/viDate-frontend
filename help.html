@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>viDate — Help & Guide</title>
+
+  <style>
+    :root{
+      --vidate: #ec4899;
+      --bg-1: #020617;
+      --bg-2: #020617;
+      --muted: #cbd5e1;
+      --glass: rgba(148,163,184,0.25);
+      --max-width: 1360px;
+    }
+
+    *{box-sizing:border-box}
+    
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+      background:#020617;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    
+    a{color:inherit;text-decoration:none}
+
+    .page {
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px;
+      background:#020617;
+    }
+
+    .shell {
+      width:100%;
+      max-width:var(--max-width);
+      display:grid;
+      grid-template-columns:1fr;
+      gap:32px;
+      align-items:start;
+    }
+
+    .card {
+      background:#020617;
+      border-radius:28px;
+      padding:40px 40px 26px;
+      border:1px solid rgba(148,163,184,0.35);
+      box-shadow:0 40px 110px rgba(2,6,23,0.95);
+    }
+
+    .header {
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:28px;
+    }
+    
+    .logo {
+      width:56px;
+      height:56px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(90deg,var(--vidate),#8b5cf6);
+      box-shadow:0 12px 36px rgba(236,72,853,0.32);
+    }
+    
+    .title {
+      font-size:28px;
+      font-weight:900;
+      color:var(--vidate);
+      margin:0;
+    }
+    
+    .subtitle {
+      font-size:14px;
+      color:var(--muted);
+      margin:4px 0 0 0;
+    }
+
+    .back-btn {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 12px;
+      border-radius:10px;
+      background:rgba(15,23,42,0.9);
+      border:1px solid rgba(148,163,184,0.35);
+      color:var(--muted);
+      font-weight:600;
+      font-size:13px;
+      margin-bottom:18px;
+      transition:transform .12s ease, background .12s ease;
+      cursor:pointer;
+    }
+    
+    .back-btn:hover {
+      transform:translateY(-2px);
+      background:linear-gradient(90deg, rgba(236,72,853,0.12), rgba(236,72,853,0.06));
+      color:#e6e9ef;
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns:1fr 280px;
+      gap:28px;
+      align-items:start;
+    }
+
+    .content {
+      display:flex;
+      flex-direction:column;
+      gap:28px;
+    }
+
+    .section {
+      background:rgba(15,23,42,0.9);
+      padding:20px 22px;
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,0.3);
+    }
+
+    .section-title {
+      font-size:18px;
+      font-weight:800;
+      color:var(--vidate);
+      margin:0 0 16px 0;
+    }
+
+    .section-subtitle {
+      font-size:13px;
+      color:var(--muted);
+      margin:0 0 12px 0;
+    }
+
+    .faq-item {
+      margin-bottom:14px;
+      padding-bottom:14px;
+      border-bottom:1px dashed rgba(51,65,85,0.8);
+    }
+    
+    .faq-item:last-child {
+      border-bottom:none;
+      margin-bottom:0;
+      padding-bottom:0;
+    }
+
+    .faq-q {
+      font-weight:700;
+      color:#e6e9ef;
+      margin:0 0 6px 0;
+      font-size:14px;
+    }
+
+    .faq-a {
+      color:var(--muted);
+      font-size:13px;
+      margin:0;
+      line-height:1.5;
+    }
+
+    .guide-step {
+      display:flex;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .step-num {
+      min-width:32px;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:linear-gradient(90deg,var(--vidate),#8b5cf6);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:14px;
+      flex-shrink:0;
+    }
+
+    .step-content {
+      flex:1;
+    }
+
+    .step-title {
+      font-weight:700;
+      color:#e6e9ef;
+      margin:0 0 4px 0;
+      font-size:14px;
+    }
+
+    .step-desc {
+      color:var(--muted);
+      font-size:13px;
+      margin:0;
+      line-height:1.5;
+    }
+
+    .shortcut-table {
+      width:100%;
+      border-collapse:collapse;
+      margin-top:8px;
+    }
+
+    .shortcut-table td {
+      padding:8px 10px;
+      border-bottom:1px dashed rgba(51,65,85,0.8);
+      font-size:13px;
+    }
+
+    .shortcut-table td:first-child {
+      color:var(--vidate);
+      font-weight:700;
+      width:35%;
+    }
+
+    .shortcut-table td:last-child {
+      color:var(--muted);
+    }
+
+    .shortcut-table tr:last-child td {
+      border-bottom:none;
+    }
+
+    .sidebar {
+      position:sticky;
+      top:20px;
+    }
+
+    .sidebar-section {
+      background:rgba(15,23,42,0.9);
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,0.3);
+      margin-bottom:16px;
+    }
+
+    .sidebar-title {
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+      margin:0 0 8px 0;
+    }
+
+    .sidebar-link {
+      display:block;
+      padding:6px 8px;
+      border-radius:8px;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:600;
+      transition:transform .12s ease, background .12s ease, color .12s ease;
+      cursor:pointer;
+    }
+
+    .sidebar-link:hover {
+      transform:translateX(4px);
+      background:rgba(236,72,853,0.12);
+      color:#e6e9ef;
+    }
+
+    .footer {
+      margin-top:28px;
+      padding-top:28px;
+      border-top:1px dashed rgba(51,65,85,0.8);
+      color:rgba(255,255,255,0.6);
+      font-size:13px;
+      text-align:center;
+    }
+
+    @media (max-width:1200px){
+      .page { padding:32px; }
+      .card { padding:32px 32px 24px; }
+    }
+
+    @media (max-width:992px){
+      .page { padding:24px; }
+      .grid { grid-template-columns:1fr; }
+      .card { padding:28px 22px 22px; border-radius:24px; }
+    }
+
+    @media (max-width:768px){
+      .page { padding:20px; }
+      .card { padding:24px 18px 18px; }
+      .title { font-size:24px; }
+    }
+
+    @media (max-width:480px){
+      .page { padding:14px; }
+      .card { padding:20px 14px; }
+      .title { font-size:20px; }
+      .section { padding:16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell" role="application" aria-label="viDate help">
+
+      <div class="card" role="main">
+        <a href="home.html" class="back-btn" aria-label="Back to home">
+          ← Back to Home
+        </a>
+
+        <div class="header">
+          <div class="logo" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 id="help-title" class="title">Help & Guide</h1>
+            <p class="subtitle">Learn how to use viDate and get answers to common questions</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="content">
+            <!-- Getting Started -->
+            <section class="section">
+              <h2 class="section-title">🚀 Getting Started</h2>
+              <div class="guide-step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <div class="step-title">Go to Chat</div>
+                  <div class="step-desc">Click the "Start Dating" button to open the chat. You'll see a conversation with Asha, our AI assistant.</div>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <div class="step-title">Type Your Message</div>
+                  <div class="step-desc">Write what you'd like to say in the message box. Use "Like" and "Flirt" buttons for quick replies.</div>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <div class="step-title">Get Suggestions</div>
+                  <div class="step-desc">viDate will suggest warm, thoughtful replies based on your message. You control everything.</div>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                  <div class="step-title">Adjust Your Settings</div>
+                  <div class="step-desc">Customize tone, emoji usage, and notifications in the Settings page to match your style.</div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Profile & Settings -->
+            <section class="section">
+              <h2 class="section-title">👤 Profile & Settings</h2>
+              <p class="section-subtitle">Personalize your viDate experience</p>
+              <div class="faq-item">
+                <div class="faq-q">How do I edit my profile?</div>
+                <div class="faq-a">Go to Profile, click "Edit Profile", update your name, handle, and bio, then click "Save".</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">Can I change my avatar?</div>
+                <div class="faq-a">Yes! Click any avatar option (CH, AS, 💖, 🌙, ⭐, etc.) to change your avatar instantly.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">What message tones are available?</div>
+                <div class="faq-a">Romantic, Casual, Direct, and Playful. Choose in Settings to match your personality.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">How do I control notifications?</div>
+                <div class="faq-a">Go to Settings > Notifications. Toggle push alerts, sound, and email digest on or off.</div>
+              </div>
+            </section>
+
+            <!-- Data & Privacy -->
+            <section class="section">
+              <h2 class="section-title">🔒 Data & Privacy</h2>
+              <p class="section-subtitle">Your data stays with you</p>
+              <div class="faq-item">
+                <div class="faq-q">Where is my data stored?</div>
+                <div class="faq-a">All your data (profile, settings, conversations) is stored locally in your browser. Nothing is sent to servers.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">Can I export my conversations?</div>
+                <div class="faq-a">Yes! Go to Profile > Export Data or Settings > Export my data to download everything locally.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">What happens if I clear my browser data?</div>
+                <div class="faq-a">All viDate data (profile, settings, history) will be deleted. Export before clearing if you want to keep it.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">Do you track me?</div>
+                <div class="faq-a">No. This is a demo. Nothing is tracked or sent to external servers.</div>
+              </div>
+            </section>
+
+            <!-- Keyboard Shortcuts -->
+            <section class="section">
+              <h2 class="section-title">⌨️ Keyboard Shortcuts</h2>
+              <p class="section-subtitle">Speed up your workflow</p>
+              <table class="shortcut-table">
+                <tr>
+                  <td><strong>S</strong></td>
+                  <td>Focus "Start Dating" button from Home</td>
+                </tr>
+                <tr>
+                  <td><strong>Ctrl/Cmd + E</strong></td>
+                  <td>Open Profile Edit form</td>
+                </tr>
+                <tr>
+                  <td><strong>Ctrl/Cmd + Enter</strong></td>
+                  <td>Send message in Chat</td>
+                </tr>
+                <tr>
+                  <td><strong>Tab</strong></td>
+                  <td>Navigate between buttons and inputs</td>
+                </tr>
+              </table>
+            </section>
+
+            <!-- Troubleshooting -->
+            <section class="section">
+              <h2 class="section-title">🔧 Troubleshooting</h2>
+              <div class="faq-item">
+                <div class="faq-q">Chat input is hidden behind the keyboard (mobile)</div>
+                <div class="faq-a">Scroll up in the chat area. The input will stay visible and should not be covered by the keyboard.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">My profile changes disappeared</div>
+                <div class="faq-a">Check if you clicked "Save" after editing. Changes only persist if saved.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">Navigation buttons aren't working</div>
+                <div class="faq-a">Try refreshing the page. If the issue persists, check if JavaScript is enabled.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">Suggestions aren't appearing</div>
+                <div class="faq-a">Make sure to type your message and hit Send. Suggestions appear after you send.</div>
+              </div>
+            </section>
+
+            <!-- Tips -->
+            <section class="section">
+              <h2 class="section-title">💡 Tips & Tricks</h2>
+              <div class="faq-item">
+                <div class="faq-q">Use emoji wisely</div>
+                <div class="faq-a">In Settings, adjust "Emoji usage" to control how many emojis appear in suggestions.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">Quick replies save time</div>
+                <div class="faq-a">Click "Like" or "Flirt" buttons for instant suggestions. Perfect for quick responses.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">Try different tones</div>
+                <div class="faq-a">Switch between Romantic, Casual, Direct, and Playful to find what feels natural to you.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-q">Customize your profile</div>
+                <div class="faq-a">A filled-out profile with bio helps viDate give better suggestions tailored to you.</div>
+              </div>
+            </section>
+
+            <div class="footer">
+              viDate Help • Have more questions? We're here to help • Made with care
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="sidebar">
+            <div class="sidebar-section">
+              <div class="sidebar-title">Quick Links</div>
+              <a href="home.html" class="sidebar-link">← Home</a>
+              <a href="index.html" class="sidebar-link">💬 Chat</a>
+              <a href="profile.html" class="sidebar-link">👤 Profile</a>
+              <a href="settings.html" class="sidebar-link">⚙️ Settings</a>
+              <a href="history.html" class="sidebar-link">📜 History</a>
+              <a href="about.html" class="sidebar-link">ℹ️ About</a>
+            </div>
+
+            <div class="sidebar-section">
+              <div class="sidebar-title">Help Topics</div>
+              <a onclick="document.querySelector('.section:nth-child(1)').scrollIntoView({behavior:'smooth'})" class="sidebar-link">Getting Started</a>
+              <a onclick="document.querySelector('.section:nth-child(2)').scrollIntoView({behavior:'smooth'})" class="sidebar-link">Profile & Settings</a>
+              <a onclick="document.querySelector('.section:nth-child(3)').scrollIntoView({behavior:'smooth'})" class="sidebar-link">Data & Privacy</a>
+              <a onclick="document.querySelector('.section:nth-child(4)').scrollIntoView({behavior:'smooth'})" class="sidebar-link">Shortcuts</a>
+              <a onclick="document.querySelector('.section:nth-child(5)').scrollIntoView({behavior:'smooth'})" class="sidebar-link">Troubleshooting</a>
+            </div>
+
+            <div class="sidebar-section">
+              <div class="sidebar-title">Status</div>
+              <p style="margin:0; color:var(--muted); font-size:12px;">
+                <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e; margin-right:6px;"></span>
+                All systems active
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

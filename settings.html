@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>viDate — Settings</title>
+
+  <style>
+    :root{
+      --vidate: #ec4899;
+      --bg-1: #020617;
+      --bg-2: #020617;
+      --muted: #cbd5e1;
+      --glass: rgba(148,163,184,0.25);
+      --card: rgba(15,23,42,1);
+      --max-width: 1360px;
+    }
+
+    *{box-sizing:border-box}
+    
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+      background:#020617;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    
+    a{color:inherit;text-decoration:none}
+
+    .page {
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px;
+      background:#020617;
+    }
+
+    .shell {
+      width:100%;
+      max-width:var(--max-width);
+      display:grid;
+      grid-template-columns:96px 1fr;
+      gap:40px;
+      align-items:start;
+    }
+
+    /* Left nav */
+    .left-nav {
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      align-items:center;
+      padding-top:12px;
+    }
+    
+    .nav-icon {
+      width:72px;
+      height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:20px;
+      background:rgba(15,23,42,1);
+      border:1px solid rgba(148,163,184,0.35);
+      color:var(--vidate);
+      cursor:pointer;
+      transition:transform .14s ease, background .14s ease, box-shadow .14s ease, color .14s ease;
+      outline:none;
+    }
+    
+    .nav-icon svg{
+      width:26px;
+      height:26px;
+      fill:currentColor;
+      opacity:0.98;
+    }
+    
+    .nav-icon:focus,
+    .nav-icon:hover {
+      transform:translateX(5px);
+      color:#fff;
+      background:linear-gradient(90deg, rgba(236,72,153,0.18), rgba(236,72,153,0.1));
+      box-shadow:0 18px 50px rgba(236,72,153,0.4);
+    }
+
+    /* Main card */
+    .card {
+      background:#020617;
+      border-radius:28px;
+      padding:40px 40px 26px;
+      border:1px solid rgba(148,163,184,0.35);
+      box-shadow:0 40px 110px rgba(2,6,23,0.95);
+      min-height:72vh;
+    }
+
+    header.card-head {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:24px;
+    }
+    
+    .brand {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    
+    .logo {
+      width:52px;
+      height:52px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(90deg,var(--vidate),#8b5cf6);
+      box-shadow:0 12px 36px rgba(236,72,153,0.32);
+    }
+    
+    .brand h1 { 
+      margin:0;
+      font-size:22px;
+      font-weight:800;
+      color:var(--vidate); 
+    }
+    
+    .brand p { 
+      margin:0;
+      font-size:13px;
+      color:var(--muted); 
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:24px;
+      align-items:start;
+    }
+
+    .panel {
+      background:#020617;
+      padding:18px 20px;
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,0.3);
+    }
+    
+    .section-title {
+      font-size:13px;
+      color:var(--muted);
+      font-weight:700;
+      margin:0 0 10px 0;
+    }
+
+    .row {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 0;
+      margin:0;
+    }
+    
+    .row + .row {
+      border-top:1px dashed rgba(51,65,85,0.8);
+      padding-top:10px;
+    }
+    
+    .label {
+      color:var(--muted);
+      font-weight:600;
+      font-size:13px;
+      margin:0;
+    }
+    
+    .control {
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .toggle {
+      width:48px;
+      height:28px;
+      background:rgba(51,65,85,0.9);
+      border-radius:999px;
+      position:relative;
+      cursor:pointer;
+      border:1px solid rgba(148,163,184,0.45);
+      transition:background .2s ease;
+    }
+    
+    .toggle.active {
+      background:var(--vidate);
+    }
+    
+    .toggle .knob {
+      position:absolute;
+      top:3px;
+      left:3px;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:#fff;
+      transition:left .2s ease;
+    }
+    
+    .toggle.active .knob {
+      left:23px;
+    }
+
+    .select-box {
+      background:transparent;
+      border:1px solid rgba(148,163,184,0.45);
+      padding:8px 10px;
+      border-radius:10px;
+      color:#fff;
+      font-size:13px;
+      cursor:pointer;
+      font-family:inherit;
+    }
+
+    .btn {
+      padding:10px 14px;
+      border-radius:12px;
+      background:linear-gradient(90deg,var(--vidate),#8b5cf6);
+      color:#fff;
+      border:none;
+      font-weight:700;
+      cursor:pointer;
+      font-size:13px;
+      transition:transform .12s ease, box-shadow .12s ease;
+      box-shadow:0 12px 36px rgba(236,72,153,0.32);
+    }
+    
+    .btn.ghost {
+      background:transparent;
+      border:1px solid rgba(148,163,184,0.45);
+      color:var(--muted);
+      box-shadow:none;
+    }
+    
+    .btn:active{
+      transform:translateY(1px);
+    }
+
+    .divider {
+      margin:14px 0;
+      border-top:1px dashed rgba(51,65,85,0.8);
+    }
+
+    .muted {
+      color:var(--muted);
+      font-size:12px;
+      margin:6px 0 0 0;
+    }
+
+    .info-box {
+      background:rgba(15,23,42,0.9);
+      padding:12px;
+      border-radius:12px;
+      border:1px solid rgba(148,163,184,0.3);
+      font-size:12px;
+      color:var(--muted);
+      margin-top:12px;
+    }
+
+    .foot {
+      margin-top:22px;
+      color:rgba(255,255,255,0.6);
+      font-size:13px;
+      text-align:center;
+    }
+
+    /* Responsive */
+    @media (max-width:1200px){
+      .page { padding:32px; }
+      .shell { gap:32px; grid-template-columns:88px 1fr; }
+      .card { padding:32px 32px 24px; }
+    }
+
+    @media (max-width:992px){
+      .page { padding:24px; }
+      .shell {
+        grid-template-columns:80px 1fr;
+        max-width:100%;
+        gap:28px;
+      }
+      .grid { grid-template-columns:1fr; }
+      .card { min-height:64vh; }
+    }
+
+    @media (max-width:768px){
+      .page { padding:20px; }
+      .shell {
+        grid-template-columns:1fr;
+        gap:24px;
+        max-width:100%;
+      }
+      .left-nav {
+        position:static;
+        flex-direction:row;
+        justify-content:center;
+        gap:12px;
+        margin-bottom:14px;
+      }
+      .nav-icon {
+        width:56px;
+        height:56px;
+        border-radius:16px;
+      }
+      .card { 
+        padding:28px 22px 22px; 
+        border-radius:24px;
+      }
+      header.card-head { flex-wrap:wrap; }
+    }
+
+    @media (max-width:480px){
+      .page { padding:14px; }
+      .card { padding:24px 18px 18px; }
+      .brand h1{ font-size:20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell" role="application" aria-label="viDate settings">
+
+      <!-- Left nav -->
+      <nav class="left-nav" aria-label="Primary navigation">
+        <button class="nav-icon" id="nav-home" aria-label="Home" title="Home">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 11.5L12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V11.5z"/>
+          </svg>
+        </button>
+
+        <button class="nav-icon" id="nav-chat" aria-label="Chat" title="Chat">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </button>
+
+        <button class="nav-icon" id="nav-profile" aria-label="Profile" title="Profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zM4 20c0-3.314 2.686-6 6-6h4c3.314 0 6 2.686 6 6v1H4v-1z"/>
+          </svg>
+        </button>
+
+        <button class="nav-icon" id="nav-history" aria-label="History" title="History">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 11.414V7h-2v6.586l5 5 1.414-1.414L13 13.414z"/>
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Main card -->
+      <main class="card" role="main" aria-labelledby="settings-title">
+        <header class="card-head" role="banner">
+          <div class="brand">
+            <div class="logo" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                <path d="M12 21s-6-4.35-9-7.5A6 6 0 0112 3a6 6 0 019 10.5C18 16.65 12 21 12 21z"/>
+              </svg>
+            </div>
+            <div>
+              <h1 id="settings-title">Settings</h1>
+              <p>Tune your viDate experience</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="grid">
+          <section class="panel">
+            <div class="section-title">Message Tone</div>
+
+            <div class="row">
+              <div class="label">Default tone</div>
+              <div class="control">
+                <select class="select-box" id="tonePref">
+                  <option>Romantic</option>
+                  <option>Casual</option>
+                  <option>Direct</option>
+                  <option>Playful</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="label">Emoji usage</div>
+              <div class="control">
+                <select class="select-box" id="emojiPref">
+                  <option>Often</option>
+                  <option>Moderate</option>
+                  <option>Rarely</option>
+                  <option>Never</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-title">AI Model</div>
+
+            <div class="row">
+              <div class="label">Model</div>
+              <div class="control">
+                <select class="select-box" id="modelPref">
+                  <option>Vidate-AI v1</option>
+                  <option>Vidate-AI v2 (beta)</option>
+                  <option>Classic</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-title">Notifications</div>
+
+            <div class="row">
+              <div class="label">Push notifications</div>
+              <div class="control">
+                <div class="toggle active" id="toggleNotif">
+                  <div class="knob"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="label">Sound alerts</div>
+              <div class="control">
+                <div class="toggle" id="toggleSound">
+                  <div class="knob"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="label">Email digest</div>
+              <div class="control">
+                <div class="toggle active" id="toggleEmail">
+                  <div class="knob"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-title">Privacy</div>
+
+            <div class="row">
+              <div class="label">Show online status</div>
+              <div class="control">
+                <div class="toggle active" id="toggleOnline">
+                  <div class="knob"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="label">Allow suggestions</div>
+              <div class="control">
+                <div class="toggle active" id="toggleSuggest">
+                  <div class="knob"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-title">Data</div>
+
+            <div class="row">
+              <div class="label">Store conversation history</div>
+              <div class="control">
+                <div class="toggle active" id="toggleHistory">
+                  <div class="knob"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-box">
+              Your data is stored locally in your browser. Learn more in our <strong>Privacy Policy</strong>.
+            </div>
+
+            <div style="margin-top:16px; display:flex; gap:8px;">
+              <button class="btn ghost" id="exportBtn">Export my data</button>
+              <button class="btn ghost" id="clearBtn">Clear history</button>
+            </div>
+          </section>
+
+          <!-- Right sidebar -->
+          <aside class="panel">
+            <div class="section-title">Quick Info</div>
+
+            <div style="color:var(--muted); font-size:13px; line-height:1.5;">
+              <p style="margin:0 0 8px 0;">
+                <strong>Version:</strong> v1.0.0 (demo)
+              </p>
+              <p style="margin:0 0 8px 0;">
+                <strong>Storage:</strong> Local only
+              </p>
+              <p style="margin:0 0 8px 0;">
+                <strong>Status:</strong> All systems active
+              </p>
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-title">Help & Support</div>
+
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <a href="#" class="btn ghost" style="text-align:center;">Documentation</a>
+              <a href="#" class="btn ghost" style="text-align:center;">Report issue</a>
+              <a href="about.html" class="btn ghost" style="text-align:center;">About viDate</a>
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-title">Account</div>
+
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <button class="btn ghost" id="saveBtn">Save changes</button>
+              <button class="btn ghost" id="resetBtn" style="color:#ff6b6b;">Reset to default</button>
+            </div>
+          </aside>
+        </div>
+
+        <div class="foot">
+          viDate • Settings are stored locally • Changes apply immediately
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Page-specific logic -->
+  <script>
+    (function(){
+      // Toggle switches
+      const toggles = document.querySelectorAll('.toggle');
+      toggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          toggle.classList.toggle('active');
+        });
+      });
+
+      // Selects
+      document.getElementById('tonePref').addEventListener('change', (e) => {
+        console.log('Tone changed to:', e.target.value);
+      });
+      document.getElementById('emojiPref').addEventListener('change', (e) => {
+        console.log('Emoji usage changed to:', e.target.value);
+      });
+      document.getElementById('modelPref').addEventListener('change', (e) => {
+        console.log('Model changed to:', e.target.value);
+      });
+
+      // Buttons
+      document.getElementById('exportBtn').addEventListener('click', () => {
+        alert('Exporting your data (demo)...');
+      });
+      document.getElementById('clearBtn').addEventListener('click', () => {
+        if (confirm('Are you sure you want to clear all conversation history?')) {
+          alert('History cleared (demo)');
+        }
+      });
+      document.getElementById('saveBtn').addEventListener('click', () => {
+        alert('Settings saved (demo)');
+      });
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        if (confirm('Reset all settings to default?')) {
+          alert('Settings reset to default (demo)');
+          document.querySelectorAll('.toggle').forEach(toggle => {
+            toggle.classList.add('active');
+          });
+        }
+      });
+    })();
+  </script>
+
+  <script src="app.js"></script>
+</body>
+</html>
